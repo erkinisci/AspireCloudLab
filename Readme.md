@@ -23,5 +23,9 @@ This repository is a simple .NET app that shows off collecting metrics with Open
 dotnet run --project AspireCloudLab.AppHost
 ```
 ## Check it out
-- [.Net Aspire samples](https://github.com/dotnet/aspire-samples/tree/main)
+- [.Net Aspire Learning](https://learn.microsoft.com/en-us/dotnet/aspire/)
+- [.Net Aspire samples - Github repo](https://github.com/dotnet/aspire-samples/tree/main)
 - [Observability with OpenTelemetry](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel)
+- [Rider Aspire Plugin](https://github.com/dotnet/aspire/blob/main/docs/specs/IDE-execution.md)
+- [Rider Aspire Plugin Doc.](https://rafaelldi.github.io/aspire-plugin/starter-topic.html)
+- [Running .NET Aspire applications inside an integrated developer environment (IDE)](https://github.com/dotnet/aspire/blob/main/docs/specs/IDE-execution.md)
