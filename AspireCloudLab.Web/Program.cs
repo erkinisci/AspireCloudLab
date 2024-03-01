@@ -21,9 +21,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseStaticFiles();
-
 app.UseAntiforgery();
-
 app.UseOutputCache();
 
 app.MapRazorComponents<App>()
@@ -31,4 +29,4 @@ app.MapRazorComponents<App>()
 
 app.MapDefaultEndpoints();
 
-app.Run();
+await app.RunAsync();

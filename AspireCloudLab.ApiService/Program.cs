@@ -41,6 +41,11 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 });
 
+app.MapGet("startup", () => new
+{
+    GrafanaUrl = app.Configuration["GRAFANA_URL"]!
+});
+
 app.MapDefaultEndpoints();
 
 app.Run();
