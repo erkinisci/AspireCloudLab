@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AspireCloudLab.ApiService\AspireCloudLab.ApiService.csproj" />
+    <ProjectReference Include="..\AspireCloudLab.WeatherApp.Api\AspireCloudLab.WeatherApp.Api.csproj" />
     <ProjectReference Include="..\AspireCloudLab.Web\AspireCloudLab.Web.csproj" />
   </ItemGroup>
 

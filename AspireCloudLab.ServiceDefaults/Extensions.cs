@@ -115,5 +115,6 @@ public static class Extensions
         meterProviderBuilder.AddMeter(
             "Microsoft.AspNetCore.Hosting",
             "Microsoft.AspNetCore.Server.Kestrel",
-            "System.Net.Http");
+            "System.Net.Http",
+            "WeatherApp.Api");
 }

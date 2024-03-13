@@ -1,9 +1,18 @@
+using AspireCloudLab.WeatherApp.Api.CustomMetrics;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
+
+builder.Services.AddProblemDetails();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMetrics();
+builder.Services.AddSingleton<WeatherMetrics>();
 
 var app = builder.Build();
 
@@ -21,17 +30,35 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/weatherforecast", async (WeatherMetrics weatherMetrics) =>
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
+        using var _ = weatherMetrics.MeasureRequestDuration();
+        
+        try
+        {
+            await Task.Delay(Random.Shared.Next(10, 100));
+            
+            var forecast = Enumerable.Range(1, 5).Select(index =>
+                    new WeatherForecast
+                    (
+                        DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                        Random.Shared.Next(-20, 55),
+                        summaries[Random.Shared.Next(summaries.Length)]
+                    ))
+                .ToArray();
+            
+            return forecast;
+        }
+        catch (Exception ex)
+        {
+            // ignored
+            return null;
+        }
+        
+        finally
+        {
+            weatherMetrics.IncreaseWeatherRequestCount();
+        }
     })
     .WithName("GetWeatherForecast")
     .WithOpenApi();

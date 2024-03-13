@@ -11,16 +11,19 @@ builder.AddContainer("prometheus", "prom/prometheus")
     .WithVolumeMount("../prometheus", "/etc/prometheus")
     .WithEndpoint(9090, hostPort: 9090);
 
-var endpointReference = grafana.GetEndpoint("grafana-http");
+var grafanaEndpointReference = grafana.GetEndpoint("grafana-http");
 
 var apiService = builder
     .AddProject<Projects.AspireCloudLab_ApiService>("apiservice")
-    .WithEnvironment("GRAFANA_URL", endpointReference);
+    .WithEnvironment("GRAFANA_URL", grafanaEndpointReference);
+
+builder.AddProject<Projects.AspireCloudLab_WeatherApp_Api>("weatherappapi")
+    .WithEnvironment("GRAFANA_URL", grafanaEndpointReference);
 
 builder.AddProject<Projects.AspireCloudLab_Web>("webfrontend")
     .WithReference(cache)
     .WithReference(apiService)
-    .WithEnvironment("GRAFANA_URL", endpointReference);
+    .WithEnvironment("GRAFANA_URL", grafanaEndpointReference);
 
 //builder.Build().Run();
 using var app = builder.Build();
