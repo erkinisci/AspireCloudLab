@@ -29,3 +29,10 @@ dotnet run --project AspireCloudLab.AppHost
 - [Rider Aspire Plugin](https://github.com/dotnet/aspire/blob/main/docs/specs/IDE-execution.md)
 - [Rider Aspire Plugin Doc.](https://rafaelldi.github.io/aspire-plugin/starter-topic.html)
 - [Running .NET Aspire applications inside an integrated developer environment (IDE)](https://github.com/dotnet/aspire/blob/main/docs/specs/IDE-execution.md)
+
+## Aspir8
+
+Deploy .Net Aspire AppHost
+
+- [minukube](https://minikube.sigs.k8s.io/docs/)
+- Give Aspirate a star on GitHub [aspirational-manifests](https://github.com/prom3theu5/aspirational-manifests?tab=readme-ov-file)

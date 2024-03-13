@@ -1,5 +1,10 @@
 *.jfm
 
+# Aspir8
+AspireCloudLab.AppHost/aspirate-output
+AspireCloudLab.AppHost/manifest.json
+
+
 # User-specific files
 *.suo
 *.user
